@@ -5,5 +5,5 @@ export async function query() {
 }
 
 export async function queryCurrent() {
-  return request('/api/selfinfo ');
+  return request('/api/auth/self_info');
 }

@@ -1,7 +1,7 @@
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 export default {
   // 支持值为 Object 和 Array
-  'GET /api/selfinfo': {
+  'GET /api/auth/self_infoo': {
     name: 'Serati Ma',
     avatar: 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png',
     userid: '00000001',
@@ -76,24 +76,34 @@ export default {
     const { password, username, type } = req.body;
     if (password === 'itcloudy' && username === 'admin') {
       res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
+        code:2000,
+        data:{
+          type:'account',
+          currentAuthority:'admin',
+          token:'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjczMTQ0OTk3NzYsIk5hbWUiOiJhZG1pbiIsIlJvbGVJZHMiOltdLCJSb2xlQ29kZXMiOltdLCJVc2VySWQiOjEsIklzQWRtaW4iOnRydWV9.hjpE2duUrFj868lfPTRxMj3X7Yo9t7KAXe_KEDEw3dMINlpzpZJQphgp4Dmgu0w1_75mjP3c9ilpV16AHZSG3FX1-EAM4oRhLVOnnKiVeUTgox-BnjQhQBu3RO-kPBh5ZnYDkrSzj4G6cpFRJnY8DLk8zb8MWngD05JTJM4xNLc',
+        },
+        message:''
       });
       return;
     }
     if (password === 'itcloudy' && username === 'user') {
       res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'user',
+        code:2000,
+        data:{
+          type:'account',
+          currentAuthority:'user',
+          token:'Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjczMTQ0OTk3NzYsIk5hbWUiOiJhZG1pbiIsIlJvbGVJZHMiOltdLCJSb2xlQ29kZXMiOltdLCJVc2VySWQiOjEsIklzQWRtaW4iOnRydWV9.hjpE2duUrFj868lfPTRxMj3X7Yo9t7KAXe_KEDEw3dMINlpzpZJQphgp4Dmgu0w1_75mjP3c9ilpV16AHZSG3FX1-EAM4oRhLVOnnKiVeUTgox-BnjQhQBu3RO-kPBh5ZnYDkrSzj4G6cpFRJnY8DLk8zb8MWngD05JTJM4xNLc',
+        },
+        message:''
       });
       return;
     }
     res.send({
-      status: 'error',
-      type,
-      currentAuthority: 'guest',
+      code:2004,
+      data:{
+        type:'account',
+      },
+      message:''
     });
   },
   'POST /api/register': (req, res) => {

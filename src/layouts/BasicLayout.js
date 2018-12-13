@@ -116,14 +116,14 @@ class BasicLayout extends React.PureComponent {
     const currRouterData = this.matchParamsPath(pathname, breadcrumbNameMap);
 
     if (!currRouterData) {
-      return 'Base Framework Pro';
+      return 'Base Framework';
     }
     const pageName = formatMessage({
       id: currRouterData.locale || currRouterData.name,
       defaultMessage: currRouterData.name,
     });
 
-    return `${pageName} - Base Framework Pro`;
+    return `${pageName} - Base Framework`;
   };
 
   getLayoutStyle = () => {

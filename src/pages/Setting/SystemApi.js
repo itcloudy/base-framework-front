@@ -103,8 +103,6 @@ class SystemApi extends PureComponent {
     {
       title: formatMessage({id:'system.api.operation'}),
       render: (text, record) => {
-        console.log(record);
-        console.log(text);
         if (record.is_active === true){
           return (
             <Fragment>

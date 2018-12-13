@@ -20,7 +20,7 @@ export default {
         payload: response,
       });
       // Login successfully
-      if (response.status === 'ok') {
+      if (response.code === 20000) {
         reloadAuthorized();
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
@@ -67,11 +67,14 @@ export default {
 
   reducers: {
     changeLoginStatus(state, { payload }) {
-      setAuthority(payload.currentAuthority);
+      setAuthority(payload.data.currentAuthority);
+      if (payload.code === 20000){
+        sessionStorage.setItem("Authorization", payload.data.token);
+      }
       return {
         ...state,
-        status: payload.status,
-        type: payload.type,
+        status: payload.code,
+        type: payload.data.type,
       };
     },
   },

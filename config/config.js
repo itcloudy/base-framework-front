@@ -72,13 +72,13 @@ export default {
   externals: {
     '@antv/data-set': 'DataSet',
   },
-  // proxy: {
-  //   '/api': {
-  //     target: 'http://localhost:8080/',
-  //     changeOrigin: true,
-  //     pathRewrite: { '^/api': '' },
-  //   },
-  // },
+  proxy: {
+    '/api': {
+      target: 'http://localhost:8080/',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
   ignoreMomentLocale: true,
   lessLoaderOptions: {
     javascriptEnabled: true,

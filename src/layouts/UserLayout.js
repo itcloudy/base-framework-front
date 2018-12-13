@@ -36,9 +36,9 @@ class UserLayout extends React.PureComponent {
   // getPageTitle() {
   //   const { routerData, location } = this.props;
   //   const { pathname } = location;
-  //   let title = 'Base Framework Pro';
+  //   let title = 'Base Framework';
   //   if (routerData[pathname] && routerData[pathname].name) {
-  //     title = `${routerData[pathname].name} - Base Framework Pro`;
+  //     title = `${routerData[pathname].name} - Base Framework`;
   //   }
   //   return title;
   // }
