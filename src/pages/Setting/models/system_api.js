@@ -1,5 +1,5 @@
 
-import { querySystemAPI, addSystemAPI, updateSystemAPI } from '@/services/system_api';
+import { querySystemAPI, addSystemAPI,activeSystemAPI, updateSystemAPI } from '@/services/system_api';
 export default{
   namespce:'system_api',
   state:{
@@ -13,6 +13,14 @@ export default{
         type: 'save',
         payload: response.data,
       });
+    },
+    *active({ payload, callback }, { call, put }) {
+      const response = yield call(activeSystemAPI, payload);
+      yield put({
+        type: 'appendData',
+        payload: response.data,
+      });
+      if (callback) callback();
     },
     *add({ payload, callback }, { call, put }) {
       const response = yield call(addSystemAPI, payload);

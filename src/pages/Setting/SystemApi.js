@@ -233,8 +233,16 @@ class SystemApi extends PureComponent {
       stepFormValues: record || {},
     });
   };
-  handleActiveAction = (active,id)=>{
-
+  handleActiveAction = (active,record)=>{
+    const { dispatch } = this.props;
+    dispatch({
+      type: 'system_api/active',
+      payload: {
+        ids:[record.id],
+        active,
+      },
+    });
+    message.success('添加成功');
   };
 
   handleAdd = fields => {
