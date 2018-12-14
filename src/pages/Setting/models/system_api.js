@@ -4,8 +4,6 @@ export default{
   namespce:'system_api',
   state:{
     data:[],
-    form:null,
-    detail:null,
   },
   effects: {
     *fetch({ payload }, { call, put }) {
@@ -18,15 +16,15 @@ export default{
     *add({ payload, callback }, { call, put }) {
       const response = yield call(addSystemAPI, payload);
       yield put({
-        type: 'save',
-        payload: response,
+        type: 'appendData',
+        payload: response.data,
       });
       if (callback) callback();
     },
     *update({ payload, callback }, { call, put }) {
       const response = yield call(updateSystemAPI, payload);
       yield put({
-        type: 'save',
+        type: 'updateData',
         payload: response,
       });
       if (callback) callback();
@@ -37,6 +35,29 @@ export default{
       return {
         ...state,
         ...action.payload,
+      };
+    },
+    appendData(state, action) {
+      let list = Object.assign([], state.data.list);
+      list.unshift(action.payload)
+      let data = Object.assign({}, state.data);
+      data.list = list;
+      return {
+        ...state,
+        data:data,
+      };
+    },
+    updateData(state, action) {
+      let update = action.payload;
+      let data = state.data;
+      data.list.forEach((item,i) => {
+        if (item.id === create.id){
+          data[i]=update;
+        }
+      });
+      return {
+        ...state,
+        data:data,
       };
     },
   },

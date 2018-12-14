@@ -3,10 +3,10 @@ import request from '@/utils/request';
 
 
 export async function querySystemAPI(params) {
-  return request(`/api/system_apis?${stringify(params)}`)
+  return request(`/api/auth/system_apis?${stringify(params)}`)
 }
 export async function addSystemAPI(params) {
-  return request('/api/system_api', {
+  return request('/api/auth/system_api', {
     method: 'POST',
     body: {
       ...params,
@@ -16,7 +16,7 @@ export async function addSystemAPI(params) {
 }
 
 export async function updateSystemAPI(params) {
-  return request('/api/system_api', {
+  return request('/api/auth/system_api', {
     method: 'POST',
     body: {
       ...params,

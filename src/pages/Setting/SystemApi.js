@@ -60,8 +60,8 @@ const CreateForm = Form.create()(props=>{
         })(<Select placeholder={formatMessage({ id: 'global.select' })} style={{ width: '100%' }}>
                   <Option value="GET">GET</Option>
                   <Option value="POST">POST</Option>
-                  <Option value="PUT">POST</Option>
-                  <Option value="DELETE">POST</Option>
+                  <Option value="PUT">PUT</Option>
+                  <Option value="DELETE">DELETE</Option>
                 </Select>)}
       </FormItem>
     </Modal>
@@ -203,17 +203,13 @@ class SystemApi extends PureComponent {
 
   handleSearch = e => {
     e.preventDefault();
-
     const { dispatch, form } = this.props;
-
     form.validateFields((err, fieldsValue) => {
       if (err) return;
-
       const values = {
         ...fieldsValue,
         updatedAt: fieldsValue.updatedAt && fieldsValue.updatedAt.valueOf(),
       };
-
       this.setState({
         formValues: values,
       });
@@ -246,10 +242,9 @@ class SystemApi extends PureComponent {
     dispatch({
       type: 'system_api/add',
       payload: {
-        desc: fields.desc,
+        ...fields,
       },
     });
-
     message.success('添加成功');
     this.handleModalVisible();
   };
@@ -352,6 +347,7 @@ class SystemApi extends PureComponent {
               )}
             </div>
             <StandardTable
+              rowKey="id"
               selectedRows={selectedRows}
               loading={loading}
               data={data}
