@@ -3,14 +3,15 @@ import { querySystemAPI, addSystemAPI, updateSystemAPI } from '@/services/system
 export default{
   namespce:'system_api',
   state:{
-    data:[],
+    list:[],
+    pagination:{},
   },
   effects: {
     *fetch({ payload }, { call, put }) {
       const response = yield call(querySystemAPI, payload);
       yield put({
         type: 'save',
-        payload: response,
+        payload: response.data,
       });
     },
     *add({ payload, callback }, { call, put }) {
@@ -38,26 +39,25 @@ export default{
       };
     },
     appendData(state, action) {
-      let list = Object.assign([], state.data.list);
+      let list = Object.assign([], state.list);
       list.unshift(action.payload)
-      let data = Object.assign({}, state.data);
-      data.list = list;
+     
       return {
         ...state,
-        data:data,
+        list:list,
       };
     },
     updateData(state, action) {
       let update = action.payload;
-      let data = state.data;
-      data.list.forEach((item,i) => {
+      let list = state.list;
+      list.forEach((item,i) => {
         if (item.id === create.id){
-          data[i]=update;
+          list[i]=update;
         }
       });
       return {
         ...state,
-        data:data,
+        list:list,
       };
     },
   },

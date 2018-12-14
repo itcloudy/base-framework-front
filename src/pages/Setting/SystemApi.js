@@ -309,7 +309,7 @@ class SystemApi extends PureComponent {
 
   render() {
     const {
-      system_api: { data },
+      system_api: { list,pagination},
       loading,
     } = this.props;
     const { selectedRows, modalVisible, updateModalVisible, stepFormValues } = this.state;
@@ -350,7 +350,7 @@ class SystemApi extends PureComponent {
               rowKey="id"
               selectedRows={selectedRows}
               loading={loading}
-              data={data}
+              data={{list,pagination}}
               columns={this.columns}
               onSelectRow={this.handleSelectRows}
               onChange={this.handleStandardTableChange}
